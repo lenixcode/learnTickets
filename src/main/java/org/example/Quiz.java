@@ -1,10 +1,13 @@
 package org.example;
 
 import java.io.BufferedReader;
+import java.io.FileOutputStream;
 import java.io.FileReader;
+import java.io.OutputStream;
+import java.nio.charset.StandardCharsets;
 import java.util.*;
 
-public class Questions {
+public class Quiz {
     private ArrayList<Integer> keys = new ArrayList<>();
     private Map<Integer, String> qest_map = new HashMap<>();
     private Map<Integer, String> ans_map = new HashMap<>(); //who read it is gay
@@ -44,7 +47,7 @@ public class Questions {
             System.out.println("");
         }
         System.out.println("Вы молодцы!!!");
-    }
+    } //Start quiz
     private String qstGenerarion(int key){
          Set<Integer> r = new HashSet<>();
          r.add(key);
@@ -66,7 +69,7 @@ public class Questions {
              n++;
          }
          return qst;
-    }
+    } //Generation questions
     private void shuffle(String input){
         List<Character> characters = new ArrayList<Character>();
         for(char c:input.toCharArray()){
@@ -78,6 +81,23 @@ public class Questions {
             output.append(characters.remove(randPicker));
         }
         System.out.println(output.toString());
-    }
+    } //Shuffling the string
+    void addQst(){ //add questions in file
+        System.out.println("Формат вопроса должен соответствовать виду - (Вопрос Ответ)");
+        System.out.println("Если хотите выйти введите - (close) ");
 
+        try(OutputStream out = new FileOutputStream("file.txt")){
+            while(true){
+                System.out.print("Введите новый вопрос: ");
+                String str = new Scanner(System.in).nextLine();
+                System.out.println("");
+                if(str.contains("close")) break;
+
+                out.write(str.getBytes(StandardCharsets.UTF_8));
+            }
+            out.close();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
 }

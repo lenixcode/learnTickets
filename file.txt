@@ -1,5 +1,1 @@
-1 word слово
-2 carrot морковка
-3 apple яблоко
-4 bad плохой
-5 mouse мышь
+table стол
