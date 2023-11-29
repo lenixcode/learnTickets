@@ -8,8 +8,8 @@ public class Main {
     public static void main(String[] args) {
         ArrayList<Integer> keys = new ArrayList<>();
         Map<Integer, String> qest_map = new HashMap<>();
-        Map<Integer, String> ans_map = new HashMap<>();
-//кто прочитал тот гей
+        Map<Integer, String> ans_map = new HashMap<>(); //кто прочитал тот гей
+
         try(BufferedReader in = new BufferedReader(new FileReader("file.txt"))) {
             String str;
             while((str = in.readLine()) != null){
@@ -26,16 +26,53 @@ public class Main {
 
         System.out.println("Сыграем в игру???)))0)))0))\n");
 
-        int key;
-        while(true){
-            key = new Random().nextInt(keys.size()+1);
+        for(Integer key:keys){
+            Set<Integer> r = new HashSet<>();
+            r.add(key);
+            do{
+                int num = new Random().nextInt(keys.size()+1);
+                if(num!=0){
+                    r.add(num);
+                 }
+            }while(r.size()<4);
 
-            System.out.println("    "+qest_map.get(key));
-            for (int n=0; n<3; ){
-                System.out.println(")"+((key+1 > keys.size())? keys.size()%key+1:key+1)+"   ");
-                System.out.println(")"+((key+2 > keys.size())? keys.size()%key+2:key+2)+"   ");
-                System.out.println(")"+((key+3 > keys.size())? keys.size()%key+3:key+3)+"   ");
+            int n=1;
+
+            int trueAns=1;
+            String qst="";
+            for(int i:r){
+                qst += "\n      "+n+")"+ans_map.get(i);
+                if(ans_map.get(i).contains(ans_map.get(key))){
+                    trueAns=n;
+                }
+                n++;
             }
+
+
+            System.out.print("Вопрос "+key+". "+qest_map.get(key)+" = ");
+            System.out.println(qst);
+            Scanner sc = new Scanner(System.in);
+            System.out.print("Ваш ответ: ");
+
+
+            if(trueAns != sc.nextInt()){
+                System.out.println("Неправильно! Учитесь лучше!");
+                System.exit(1);
+            }
+            System.out.println("");
         }
+        System.out.println("Вы молодцы!!!");
+    }
+    static void shuffle(String input){
+        List<Character> characters = new ArrayList<Character>();
+        for(char c:input.toCharArray()){
+            characters.add(c);
+        }
+        StringBuilder output = new StringBuilder(input.length());
+        while(characters.size()!=0){
+            int randPicker = (int)(Math.random()*characters.size());
+            output.append(characters.remove(randPicker));
+        }
+        System.out.println(output.toString());
     }
 }
