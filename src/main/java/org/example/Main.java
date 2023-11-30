@@ -4,14 +4,19 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        Quiz q = new Quiz();
-
-        System.out.println("Введите 1 если хотите добавить вопрос");
-        System.out.println("Введите 2 если хотите начать игру");
+        System.out.println("Выберите номер предмета:");
+        System.out.println(
+                "   1.Иностранный язык\n"+
+                "   2.Математический анализ\n"+
+                "   3.Линейная алгебра");
 
         System.out.print("Куда пойдем: ");
+
         int option = new Scanner(System.in).nextInt();
-        if(option==1) q.addQst();
-        if(option==2) q.gameStart();;
+        if(option != 1 ){
+            System.out.println("Простите, но он еще не готов:(");
+        }else{
+            new Quiz().gameStart();
+        }
     }
 }

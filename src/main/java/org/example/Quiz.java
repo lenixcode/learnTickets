@@ -28,6 +28,15 @@ public class Quiz {
         }
     } // Initializing Collections
     public void gameStart(){
+        System.out.println("Выберите опцию(номер):");
+        System.out.println("    1.Начать игру");
+        System.out.println("    2.Составить список слов");
+        System.out.print("Куда пойдем: ");
+
+        if (new Scanner(System.in).nextInt() == 2) addQst();
+
+
+
         createQstBase();
 
         System.out.println("Выберите правильные варианты ответов:\n");
@@ -45,6 +54,7 @@ public class Quiz {
                 System.exit(1);
             }
             System.out.println("");
+
         }
         System.out.println("Вы молодцы!!!");
     } //Start quiz
@@ -82,14 +92,14 @@ public class Quiz {
         }
         System.out.println(output.toString());
     } //Shuffling the string
-    void addQst(){ //add questions in file
+    private void addQst(){ //add questions in file
         System.out.println("Формат вопроса должен соответствовать виду - (Вопрос Ответ)");
         System.out.println("Если хотите выйти введите - (close) ");
 
         try(OutputStream out = new FileOutputStream("file.txt")){
-            while(true){
+            for(int n=1; ; n++){
                 System.out.print("Введите новый вопрос: ");
-                String str = new Scanner(System.in).nextLine();
+                String str = n+" "+new Scanner(System.in).nextLine()+"\n";
                 System.out.println("");
                 if(str.contains("close")) break;
 
