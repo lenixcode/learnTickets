@@ -1,5 +1,6 @@
-1 word слово
-2 carrot морковка
-3 apple яблоко
-4 bad плохой
+1 apple яблоко
+2 God Бог
+3 water вода
+4 bottle бутылка
 5 mouse мышь
+6 mice мыши
