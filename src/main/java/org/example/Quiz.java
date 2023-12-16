@@ -12,7 +12,7 @@ public class Quiz {
     private Map<Integer, String> qest_map = new HashMap<>();
     private Map<Integer, String> ans_map = new HashMap<>(); //who read it is gay
     private int trueAns;
-    private void createQstBase(){
+    public void createQstBase(){
         try(BufferedReader in = new BufferedReader(new FileReader("file.txt"))) {
             String str;
             while((str = in.readLine()) != null){
@@ -28,17 +28,6 @@ public class Quiz {
         }
     } // Initializing Collections
     public void gameStart(){
-        System.out.println("Выберите опцию(номер):");
-        System.out.println("    1.Начать игру");
-        System.out.println("    2.Составить список слов");
-        System.out.print("Куда пойдем: ");
-
-        if (new Scanner(System.in).nextInt() == 2) addQst();
-
-
-
-        createQstBase();
-
         System.out.println("Выберите правильные варианты ответов:\n");
 
         for(Integer key:keys){
@@ -92,7 +81,7 @@ public class Quiz {
         }
         System.out.println(output.toString());
     } //Shuffling the string
-    private void addQst(){ //add questions in file
+    public void addQst(){ //add questions in file
         System.out.println("Формат вопроса должен соответствовать виду - (Вопрос Ответ)");
         System.out.println("Если хотите выйти введите - (close) ");
 
