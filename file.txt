@@ -4,3 +4,5 @@
 4 bottle бутылка
 5 mouse мышь
 6 mice мыши
+7 message сообщение
+8 crow ворона
